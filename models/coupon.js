@@ -1,18 +1,10 @@
 module.exports = {
-
 	"merchant":null,
 	"free": null,
-	"discount": {
-		"rupees": null,
-		"percent": null
-	},
-	"minimum": {
-		"product": null,
-		"money": null
-	},
-	"valid": {
-		"bool": null,
-		"producType": null
-	}
-	
+	"discount_rupees": null,
+	"discount_percent": null,
+	"minimum_product": null,
+	"minimum_money": null,
+	"valid_bool": null,
+	"valid_productType": null
 };
