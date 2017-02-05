@@ -48,11 +48,10 @@ function Parser() {
 	
 	function sendRequest(url, parsedCoupon, last) {
 		request.get(url, function(err, res, body) {
-  		if(err) throw err;
-  		let data = JSON.parse(res.body);
-  		saveData(data, parsedCoupon, last);
+	  		if(err) throw err;
+	  		let data = JSON.parse(res.body);
+	  		saveData(data, parsedCoupon, last);
 		});
-		saveData({}, parsedCoupon, last);
 	}
 
 	function saveData(data, parsedCoupon, last) {
