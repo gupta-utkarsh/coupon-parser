@@ -2,7 +2,6 @@
 require('dotenv-extended').load();
 
 var request =  require('request');
-var querystring = require('querystring');
 var coupon_model = require('./models/coupon.js');
 var raw_data = require('./data.js');
 
