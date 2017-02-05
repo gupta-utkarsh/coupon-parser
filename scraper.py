@@ -3,6 +3,9 @@ import requests
 import json
 
 def checkForKeywords(str):
+	# regex use karle cheap fuck
+	# --------------------------
+	# Python hai. FO.
 	keywords = ['order', 'buy' 'cashback', 'valid', 'not', 'only', 'available', 'applicable', 'flat']
 	for keyword in keywords:
 		if keyword in str:
@@ -26,6 +29,15 @@ def getCouponRange(offer):
 		print('no li in this')
 		yield offer.text
 
+def getCouponCode(offer):
+	# logger use kar le bc
+	print('in getCouponCode')
+	container = offer.parent.parent
+	off = container.find_all('div', class_='get-offer-code')
+	if off:
+		return off[0]['data-offer-value']
+	return None
+
 OL_MAX_DEPTH = 3
 
 MERCHANT_NAME = 'Dominos'
@@ -41,11 +53,21 @@ else:
 	soup = BeautifulSoup(page.content, 'html.parser')
 	#print(soup.prettify())
 	#print(list(soup.children)[0])
-	offersdesc = soup.find_all('div', class_='offer-desc')
-	for offer in offersdesc:
-		statements = list(getCouponRange(offer))
-		if statements != []:
-			coupons.append(statements)
+	offers = soup.find_all('div', class_='offer-desc')
+	for offer in offers:
+		# Remove random empty div's
+		if offer.text != '':
+			coupon = {'code':'', 'strings':list()}
+			code = getCouponCode(offer)
+			if code == None:
+				continue
+			coupon['code'] = code	
+			statements = list(getCouponRange(offer))
+
+			# Remove random empty li's
+			if statements != []:
+				coupon['strings'] = statements
+			coupons.append(coupon)
 	product['name'] =  MERCHANT_NAME
 	product['coupons'] = coupons
 	#print(product)
