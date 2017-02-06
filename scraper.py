@@ -6,7 +6,7 @@ def checkForKeywords(str):
 	# regex use karle cheap fuck
 	# --------------------------
 	# Python hai. FO.
-	keywords = ['order', 'buy' 'cashback', 'valid', 'not', 'only', 'available', 'applicable', 'flat']
+	keywords = ['Free', 'order', 'buy' 'cashback', 'valid', 'not', 'only', 'available', 'applicable', 'flat']
 	for keyword in keywords:
 		if keyword in str:
 			return True
@@ -40,9 +40,9 @@ def getCouponCode(offer):
 
 OL_MAX_DEPTH = 3
 
-MERCHANT_NAME = 'Dominos'
+MERCHANT_NAME = 'mcd'
 
-page = requests.get('http://localhost/projects/domi.html')
+page = requests.get('https://www.coupondunia.in/mcdonalds')
 
 product = dict()
 coupons = list()
@@ -71,7 +71,7 @@ else:
 	product['name'] =  MERCHANT_NAME
 	product['coupons'] = coupons
 	#print(product)
-	with open('domi.json', 'w') as f:
+	with open('mcd.json', 'w') as f:
 		json.dump(product, f)
 	print(json.dumps(product))
 
