@@ -1,14 +1,32 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import sys
 
-def checkForKeywords(str):
+def help():
+	print('-------------------------------------')
+	print('Usage : scraper {Dominos | Mcdonalds}')
+	print('-------------------------------------')
+
+if len(sys.argv) <= 1:
+	print('Not enough arguments.')
+	help()
+	sys.exit(0)
+
+elif sys.argv[1].lower() not in ['dominos', 'mcdonalds']:
+	print('Wrong arguments')
+	help()
+	sys.exit(0)
+else:
+	MERCHANT_NAME = sys.argv[1]
+
+def checkForKeywords(cpn):
 	# regex use karle cheap fuck
 	# --------------------------
 	# Python hai. FO.
-	keywords = ['Free', 'order', 'buy' 'cashback', 'valid', 'not', 'only', 'available', 'applicable', 'flat']
+	keywords = ['free', 'order', 'buy' 'cashback', 'valid', 'not', 'only', 'available', 'applicable', 'flat']
 	for keyword in keywords:
-		if keyword in str:
+		if keyword in cpn.lower():
 			return True
 	return False
 
@@ -40,8 +58,6 @@ def getCouponCode(offer):
 
 OL_MAX_DEPTH = 3
 
-MERCHANT_NAME = 'mcd'
-
 page = requests.get('https://www.coupondunia.in/mcdonalds')
 
 product = dict()
@@ -71,7 +87,7 @@ else:
 	product['name'] =  MERCHANT_NAME
 	product['coupons'] = coupons
 	#print(product)
-	with open('mcd.json', 'w') as f:
+	with open(MERCHANT_NAME + '.json', 'w') as f:
 		json.dump(product, f)
 	print(json.dumps(product))
 
