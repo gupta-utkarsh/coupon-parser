@@ -66,8 +66,9 @@ function Parser() {
 			
 				console.log("\n*parsing coupon " + coupon_index + '*');
 
-				let parsedCoupon = Object.assign({}, coupon_model, { merchant: merchantName });
-				coupon.forEach(function(string, string_index, strings) {
+				let couponCode = coupon.code;
+				let parsedCoupon = Object.assign({}, coupon_model, { merchant: merchantName, code: couponCode });
+				coupon.strings.forEach(function(string, string_index, strings) {
 
 					console.log("-sending request for string " + string);
 			
