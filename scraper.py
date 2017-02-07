@@ -3,28 +3,32 @@ import requests
 import json
 import sys
 
+
 def help():
 	print('-------------------------------------')
 	print('Usage : scraper {Dominos | Mcdonalds}')
 	print('-------------------------------------')
 
-if len(sys.argv) <= 1:
-	print('Not enough arguments.')
-	help()
-	sys.exit(0)
 
-elif sys.argv[1].lower() not in ['dominos', 'mcdonalds']:
-	print('Wrong arguments')
-	help()
-	sys.exit(0)
-else:
-	MERCHANT_NAME = sys.argv[1]
+def main():
+	if len(sys.argv) <= 1:
+		print('Not enough arguments.')
+		help()
+		sys.exit(0)
+
+	elif sys.argv[1].lower() not in ['dominos', 'mcdonalds']:
+		print('Wrong arguments')
+		help()
+		sys.exit(0)
+	else:
+		global MERCHANT_NAME 
+		MERCHANT_NAME = sys.argv[1].lower()
 
 def checkForKeywords(cpn):
 	# regex use karle cheap fuck
 	# --------------------------
 	# Python hai. FO.
-	keywords = ['free', 'order', 'buy' 'cashback', 'valid', 'not', 'only', 'available', 'applicable', 'flat']
+	keywords = ['free', 'order', 'buy', 'cashback', 'valid', 'not', 'only', 'available', 'applicable', 'flat']
 	for keyword in keywords:
 		if keyword in cpn.lower():
 			return True
@@ -40,6 +44,7 @@ def getCouponRange(offer):
 			#print(li.text, 'from', index)
 			content = li.text
 			if content is not None:
+				#print('content is :', content)
 				if checkForKeywords(content):
 					#print(li.text, 'from', index)
 					yield content
@@ -56,9 +61,12 @@ def getCouponCode(offer):
 		return off[0]['data-offer-value']
 	return None
 
+if __name__ == '__main__':
+	main()
+
 OL_MAX_DEPTH = 3
 
-page = requests.get('https://www.coupondunia.in/mcdonalds')
+page = requests.get('https://www.coupondunia.in/' + MERCHANT_NAME)
 
 product = dict()
 coupons = list()
