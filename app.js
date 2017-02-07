@@ -2,6 +2,7 @@
 require('dotenv-extended').load();
 var request =  require('request');
 var fs = require('fs');
+const sleep = require('es6-sleep');
 
 var coupon_model = require('./models/coupon.js');
 var raw_data = require('./sample_data.js');
@@ -37,16 +38,18 @@ function Parser() {
 	const entitiesType = {
 		"Free" : "free",
 		"minimum::moeny" : "minimum_money",
+		"minimum::product" : "minimum_product",
 		"Discount::Rs" : "discount_rupees",
 		"Discount::percent" : "discount_percent",
 		"Valid::ProductType" : "valid_productType",		
-		"Valid::Bool" : "valid_bool"
+		"Valid::Bool" : "valid_bool",
+		"builtin.datetime.set": "coupon_date"
 	}
+	let index = 1;
 
 	let saveToFile; 
 	let isParseCompleted = true;
-	let parsedCoupons = []; 
-
+	let parsedCoupons = [];20
 	function getParsedCoupons() {
 		if(isParseCompleted)
 			return Array.from(parsedCoupons);
@@ -69,24 +72,35 @@ function Parser() {
 				let couponCode = coupon.code;
 				let parsedCoupon = Object.assign({}, coupon_model, { merchant: merchantName, code: couponCode });
 				coupon.strings.forEach(function(string, string_index, strings) {
-
-					console.log("-sending request for string " + string);
 			
 					let url = baseURL + encodeURIComponent(string);
 	 				let last_string = string_index == strings.length - 1;
 	 				let last_coupon = (coupon_index == coupons.length - 1) && (merchant_index == merchants.length - 1); 
-					sendRequest(url, parsedCoupon, last_string, last_coupon); 
+					setTimoutandSendRequest(url, parsedCoupon, last_string, last_coupon);
 				});
 			});
 		});
 	}
+
+	function setTimoutandSendRequest(url, parsedCoupon, last_string, last_coupon) {
+		setTimeout(function() {
+			sendRequest(url, parsedCoupon, last_string, last_coupon);
+		}, 20000 * index);
+		index++;
+	}
 	
 	function sendRequest(url, parsedCoupon, last_string, last_coupon) {
-		request.get(url, function(err, res, body) {
-			console.log("Response recieved");
-	  		if(err) throw err;
-	  		let data = JSON.parse(res.body);
-	  		saveData(data, parsedCoupon, last_string, last_coupon);
+		console.log("-sending request on " + url);
+		request.get(url, function(err, res) {
+		  	console.log(res.body);
+	  		if(err) {
+	  			let data = {entities:[]};
+	  			saveData(data, parsedCoupon, last_string, last_coupon);
+	  		}
+	  		else {
+	  			let data = JSON.parse(res.body);
+		  		saveData(data, parsedCoupon, last_string, last_coupon);	
+	  		}
 		});
 	}
 
@@ -94,8 +108,13 @@ function Parser() {
 		data.entities.forEach(function(entity) {
 			let value = entity.entity;
 			let type = entitiesType[entity.type];
-			if(parsedCoupon[type]) {
-				parsedCoupon[type] += value;
+			if(parsedCoupon[type] && Array.isArray(parsedCoupon[type])) {
+				parsedCoupon[type].push(value);
+			}
+			else if(parsedCoupon[type]) {
+				parsedCoupon[type] = [parsedCoupon[type]];
+				console.log(parsedCoupon[type]);
+				parsedCoupon[type].push(value);
 			}
 			else parsedCoupon[type] = value;
 		});
@@ -117,6 +136,7 @@ function Parser() {
 		if(parsedCoupon.valid_bool && (parsedCoupon.valid_bool.includes("not") || parsedCoupon.valid_bool.includes("Not")) ) 
 			parsedCoupon.valid_bool = false;
 		else parsedCoupon.valid_bool = true;
+		console.log(parsedCoupon);
 		parsedCoupons.push(parsedCoupon);
 	}
 

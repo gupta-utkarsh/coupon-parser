@@ -1,1 +1,43 @@
-{"coupons": [{"code": "ADV03", "strings": [" Flat Rs. 101 off on orders above Rs. 400.", " Not valid on Regular size pizzas (only valid on Medium & Large size).", " Not valid on simply veg, simply non-veg, & combos."]}, {"code": "ADV07", "strings": [" Buy 1 pizza & get 50% off on the second pizza.", " Not valid on Regular size pizzas (only valid on Medium & Large size)."]}, {"code": "FRCH25", "strings": [" Pay via FreeCharge and get 25% off on orders above Rs. 400.", " Hit 'Pay with Freecharge Wallet' option and use the code to avail discount."]}, {"code": "NET01", "strings": [" Order for a minimum amount of Rs. 399 and get a free white pasta italiano at Dominos.", " Not valid on Regular size pizzas (only valid on Medium & Large size).", " Not valid on simply veg, simply non-veg, & combos."]}, {"code": "DOM10", "strings": [" Get 10% off on pizzas and breads on a minimum order of Rs. 400.", " Not valid on combos, beverages and other add-ons like garlic breads, pastas, simply veg, simply non-veg pizzas, regular size pizzas.", " Valid only on online orders."]}], "name": "dominos"}
+{
+  "coupons": [
+    {
+      "code": "ADV03",
+      "strings": [
+        " Flat Rs. 101 off on orders above Rs. 400.",
+        " Not valid on Regular size pizzas (only valid on Medium & Large size).",
+        " Not valid on simply veg, simply non-veg, & combos."
+      ]
+    },
+    {
+      "code": "ADV07",
+      "strings": [
+        " Buy 1 pizza & get 50% off on the second pizza.",
+        " Not valid on Regular size pizzas (only valid on Medium & Large size)."
+      ]
+    },
+    {
+      "code": "FRCH25",
+      "strings": [
+        " Pay via FreeCharge and get 25% off on orders above Rs. 400.",
+        " Hit 'Pay with Freecharge Wallet' option and use the code to avail discount."
+      ]
+    },
+    {
+      "code": "NET01",
+      "strings": [
+        " Order for a minimum amount of Rs. 399 and get a free white pasta italiano at Dominos.",
+        " Not valid on Regular size pizzas (only valid on Medium & Large size).",
+        " Not valid on simply veg, simply non-veg, & combos."
+      ]
+    },
+    {
+      "code": "DOM10",
+      "strings": [
+        " Get 10% off on pizzas and breads on a minimum order of Rs. 400.",
+        " Not valid on combos, beverages and other add-ons like garlic breads, pastas, simply veg, simply non-veg pizzas, regular size pizzas.",
+        " Valid only on online orders."
+      ]
+    }
+  ],
+  "name": "dominos"
+}
