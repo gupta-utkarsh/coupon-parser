@@ -91,7 +91,7 @@ function Parser() {
 	function sendRequest(url, parsedCoupon, last_string, last_coupon) {
 		console.log("-sending request on " + url);
 		request.get(url, function(err, res) {
-		  	console.log(res.body);
+		  	//console.log(res.body);
 	  		if(err) {
 	  			let data = {entities:[]};
 	  			saveData(data, parsedCoupon, last_string, last_coupon);
@@ -120,9 +120,9 @@ function Parser() {
 		if(last_string) {
 			cleanAndPush(parsedCoupon);
 		}
-		if(last_coupon) {
+		/*if(last_coupon) {*/
 			saveToFile(Array.from(parsedCoupons));
-		}
+		/*}*/
 	}
 
 	function cleanAndPush(parsedCoupon) {
