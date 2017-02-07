@@ -2,7 +2,6 @@
 require('dotenv-extended').load();
 var request =  require('request');
 var fs = require('fs');
-const sleep = require('es6-sleep');
 
 var coupon_model = require('./models/coupon.js');
 var raw_data = require('./sample_data.js');
@@ -49,7 +48,7 @@ function Parser() {
 
 	let saveToFile; 
 	let isParseCompleted = true;
-	let parsedCoupons = [];20
+	let parsedCoupons = [];
 	function getParsedCoupons() {
 		if(isParseCompleted)
 			return Array.from(parsedCoupons);

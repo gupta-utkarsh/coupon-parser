@@ -10,8 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "dotenv-extended": "^1.0.4",
-    "es6-sleep": "^2.0.2",
-    "request": "^2.79.0",
-    "sleep": "^5.1.0"
+    "request": "^2.79.0"
   }
 }

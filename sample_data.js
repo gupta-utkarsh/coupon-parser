@@ -1,65 +1,46 @@
 var data = [
 	{
-	  "name": "mcdonalds",
 	  "coupons": [
 	    {
-	      "code": "CD275",
+	      "code": "ADV03",
 	      "strings": [
-	        " 2 free McChicken/McVeggie burgers on all orders above Rs. 275.",
-	        " Valid on online orders only."
+	        " Flat Rs. 101 off on orders above Rs. 400.",
+	        " Not valid on Regular size pizzas (only valid on Medium & Large size).",
+	        " Not valid on simply veg, simply non-veg, & combos."
 	      ]
 	    },
 	    {
-	      "code": "EM150",
+	      "code": "ADV07",
 	      "strings": [
-	        " Free McChicken or McVeggie on minimum purchase of Rs. 150.",
-	        " Valid only on Mondays.",
+	        " Buy 1 pizza & get 50% off on the second pizza.",
+	        " Not valid on Regular size pizzas (only valid on Medium & Large size)."
+	      ]
+	    },
+	    {
+	      "code": "FRCH25",
+	      "strings": [
+	        " Pay via FreeCharge and get 25% off on orders above Rs. 400.",
+	        " Hit 'Pay with Freecharge Wallet' option and use the code to avail discount."
+	      ]
+	    },
+	    {
+	      "code": "NET01",
+	      "strings": [
+	        " Order for a minimum amount of Rs. 399 and get a free white pasta italiano at Dominos.",
+	        " Not valid on Regular size pizzas (only valid on Medium & Large size).",
+	        " Not valid on simply veg, simply non-veg, & combos."
+	      ]
+	    },
+	    {
+	      "code": "DOM10",
+	      "strings": [
+	        " Get 10% off on pizzas and breads on a minimum order of Rs. 400.",
+	        " Not valid on combos, beverages and other add-ons like garlic breads, pastas, simply veg, simply non-veg pizzas, regular size pizzas.",
 	        " Valid only on online orders."
-	      ]
-	    },
-	    {
-	      "code": "DIG189",
-	      "strings": [
-	        " Free Saucy wrap, McAloo, McEgg or Chicken Mcgrill on all orders above Rs. 189.",
-	        " Valid only on online orders."
-	      ]
-	    },
-	    {
-	      "code": "DIG369",
-	      "strings": [
-	        " Any meal of your choice free on all orders of Rs. 369 and above.",
-	        " Applicable only on online orders."
-	      ]
-	    },
-	    {
-	      "code": "FC350",
-	      "strings": [
-	        " Purchase above Rs. 350 and get any meal free.",
-	        " Valid only on online orders."
-	      ]
-	    },
-	    {
-	      "code": "DIGDESSERT",
-	      "strings": [
-	        " McFlurry or soft serve free on purchase of any medium or large meal.",
-	        " Valid on Online Orders Only."
-	      ]
-	    },
-	    {
-	      "code": "DIG319",
-	      "strings": [
-	        " Free burger of your choice on purchases above Rs. 319.",
-	        " Applicable only on online orders."
-	      ]
-	    },
-	    {
-	      "code": "Sof15",
-	      "strings": [
-	        " Free medium soft serve on purchase of any medium or large meal.",
-	        " Applicable only on online orders."
 	      ]
 	    }
-	  ]
+	  ],
+	  "name": "dominos"
 	}
 ];
 
